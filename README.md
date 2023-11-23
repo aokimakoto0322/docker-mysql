@@ -3,11 +3,10 @@
 # 導入するソフト
  - visual studio code  
  (ソースコードを編集するソフトです。特に編集はしないですが、あるにこしたことはないのでインストールする）
- - git  
-   (dropboxなどファイル共有ソフトなどありますが、それのソースコードに特化した共有ソフトです。　環境構築のためのソースをダウンロードするのに使います）
  - docker desktop  
   (仮想の環境を構築できるソフトです。1コマンドで構築＆本番環境と同様の環境構築できるので便利です。）
- - 
+ - A-5:SQL Mk-2  
+   (SQLクライアントという、取得したデータを簡単に閲覧できたりする便利なソフトです)
 
 # visual studio codeのインストール
 
@@ -18,72 +17,6 @@ https://code.visualstudio.com/download
 ※すべて「はい」でインストールしてOKです
 
 3. インストール完了し、この画面が出ればとりあえず完了
-
-# gitのインストール
-
-1. 下記URLより、「download」gitのダウンロード  
-https://gitforwindows.org/
-
-  ![git](https://github.com/aokimakoto0322/docker-mysql/assets/43976208/c8835bf1-e951-41f4-85d9-eeb359820521)
-
-2. ダウンロードしたファイルを実行し、インストール  
-※すべて「Next」でインストールしてOKです
-
-## gitがインストールできたか確認
-1. Visual Studio Codeを開く
-2. 上の「terminal」→「New Terminal」を押し、Terminalを開く  
-![vscode_terminal](https://github.com/aokimakoto0322/docker-mysql/assets/43976208/1c5a1ff1-e5e5-4be6-8daf-e5e1afec77a9)
-3. Terminalを開いたら、下記コマンドを入力  
-`git`
-4. 下記のように、グダグダ出てきたら成功  
-※うまくいかない時は、visual studio codeを一回閉じて、再度開いたのちに行うとうまくいくかも
-```
-usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]     
-           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]    
-           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]
-           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]       
-           [--config-env=<name>=<envvar>] <command> [<args>]
-
-These are common Git commands used in various situations:
-
-start a working area (see also: git help tutorial)
-   clone     Clone a repository into a new directory
-   init      Create an empty Git repository or reinitialize an existing one   
-
-work on the current change (see also: git help everyday)
-   add       Add file contents to the index
-   mv        Move or rename a file, a directory, or a symlink
-   restore   Restore working tree files
-   rm        Remove files from the working tree and from the index
-
-examine the history and state (see also: git help revisions)
-   bisect    Use binary search to find the commit that introduced a bug
-   diff      Show changes between commits, commit and working tree, etc
-   grep      Print lines matching a pattern
-   log       Show commit logs
-   show      Show various types of objects
-   status    Show the working tree status
-
-grow, mark and tweak your common history
-   branch    List, create, or delete branches
-   commit    Record changes to the repository
-   merge     Join two or more development histories together
-   rebase    Reapply commits on top of another base tip
-   reset     Reset current HEAD to the specified state
-   switch    Switch branches
-   tag       Create, list, delete or verify a tag object signed with GPG
-
-collaborate (see also: git help workflows)
-   fetch     Download objects and refs from another repository
-   pull      Fetch from and integrate with another repository or a local branch
-   push      Update remote refs along with associated objects
-
-'git help -a' and 'git help -g' list available subcommands and some
-concept guides. See 'git help <command>' or 'git help <concept>'
-to read about a specific subcommand or concept.
-See 'git help git' for an overview of the system.
-```
-![terminal_git](https://github.com/aokimakoto0322/docker-mysql/assets/43976208/fa651299-2ed2-4bbe-956b-ec960f9296dd)
 
 # docker desktopのインストール
 ※基本はこのページをもとにインストールを進めて行きます  
@@ -120,3 +53,56 @@ SignInすると、便利な機能みたいなのが使えるが、今回特に�
 ![docker-ps](https://github.com/aokimakoto0322/docker-mysql/assets/43976208/3744fa2b-8133-4390-a6ca-e791a2f74313)
 
 # mysql環境構築
+1. docker desktopを開く
+1. 下記URLの`Code`から、環境構築用のZipファイルをダウンロードする  
+![download_dockerfile](https://github.com/aokimakoto0322/docker-mysql/assets/43976208/e56a492a-8e69-43f0-b430-738f0d4fb9f6)
+1. ダウンロードしたファイルを解凍し、任意の場所に配置する
+1. 配置後、docker/db/my.cnfを読み取り専用にする
+![setup_mycnf](https://github.com/aokimakoto0322/docker-mysql/assets/43976208/a1497073-4dea-4bbb-8b49-8b3a9ccc2fb8)
+1. visual studio codeを開く
+1. `open folder...`より、2で配置したフォルダを選択し、`「フォルダを選択」`を押す
+1. 開いた後、terminalを開き下記コマンドを入力し、エンターを押す  
+`docker compose up -d`
+![docker_compose_up](https://github.com/aokimakoto0322/docker-mysql/assets/43976208/82421740-5554-4755-8df1-d47c5176ccd8)
+1. docker desktopが下記画像のようになっていたら、環境構築成功  
+![dockerdesktop_mysql](https://github.com/aokimakoto0322/docker-mysql/assets/43976208/5de0a0e9-79d2-4b8e-ab0e-983dc0474afe)
+
+# 軽く動作チェック
+1. docker desktopより、mysql-1を押す
+![docker_exec](https://github.com/aokimakoto0322/docker-mysql/assets/43976208/7892a20a-4443-49fc-a497-9b73b38bae21)
+1. `exec`タブを開く  
+![docker_exec2](https://github.com/aokimakoto0322/docker-mysql/assets/43976208/fdcaa7eb-93a5-41fc-a24f-ee8ccdc09525)
+1. mysqlログインする  
+※ユーザー名: user、パスワード: password  
+※docker-compose.ymlで設定してあるやつです。  
+![mysql_login](https://github.com/aokimakoto0322/docker-mysql/assets/43976208/50e8dfec-2c41-42e8-a29c-323f948a31b4)
+1. `SHOW DATABASES;`でデータベースを確認する  
+※ここにある`dockerTestDb`というデータベースは、docker-compose.ymlで定義したデータベースです。
+![show_databases](https://github.com/aokimakoto0322/docker-mysql/assets/43976208/4ae6068b-52f5-4692-b7c6-bdce02f19cd8)
+1. `use dockerTestDb`でデータベースの中に入って、`show tables;`でテーブルを確認する  
+※ここにあるテーブル３つは、テスト用のテーブルです。MySQL公式のサンプルです。
+![show_tables](https://github.com/aokimakoto0322/docker-mysql/assets/43976208/9bcd767a-3c81-41dc-ac58-d4e76153fb3a)
+1. ちょっとテーブルの中身を見てみる  
+![select_table](https://github.com/aokimakoto0322/docker-mysql/assets/43976208/ab7fbe70-b178-49de-884b-b4b697c87c9f)
+
+# 応用：SQLクライアントを使う
+- 軽く動作チェックの項目でもデータベースの動きを確認できますが、ログインなど結構面倒なので、SQLクライアントを使ってデータをみたりすることが多いです。
+- なので、SQLクライアントからテーブル操作できるようさらにソフトをインストール＆環境構築をします。
+
+1. A-5:SQL Mk-2を下記URLからダウンロードする(MicroSoft Storeからダウンロードが便利かも)  
+https://a5m2.mmatsubara.com/
+1. 「入手」を押してダウンロード&インストールする
+1. インストール完了後、A-5:SQL Mk-2を開き、「追加」を押してワークスペースを作成する  
+![a5sql1](https://github.com/aokimakoto0322/docker-mysql/assets/43976208/bd773fb2-f7c8-4957-a463-ca794cbb57dd)
+1. 起動を押して、初期画面から「追加」→「MySQL/MariaDB(直接接続)を押しデータベース接続設定を行う
+![a5sql2](https://github.com/aokimakoto0322/docker-mysql/assets/43976208/bbaf6c77-5add-4c88-9dc5-c3104fcc7a1e)
+1. root権限で設定し、設定を行う  
+![a5_mysql_connect](https://github.com/aokimakoto0322/docker-mysql/assets/43976208/f401cc52-f535-450d-9732-8976590c2744)
+1. 接続後、クエリを打つといい感じにデータが取れて、Excelに出力できたりする
+![a5_query](https://github.com/aokimakoto0322/docker-mysql/assets/43976208/9c959510-4589-42e9-94ef-8e822c0d3d3c)
+
+
+# 備考
+テスト用にあるテーブルはMySQL公式からダウンロードしてきたやつなので、テーブルの解説などは下記を参照
+- https://dev.mysql.com/doc/index-other.html
+- https://qiita.com/yukibe/items/fc6016348ecf4f3b10bf
