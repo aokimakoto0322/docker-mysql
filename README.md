@@ -24,12 +24,15 @@ https://code.visualstudio.com/download
 1. 下記URLより、「download」gitのダウンロード  
 https://gitforwindows.org/
 
+  ![git](https://github.com/aokimakoto0322/docker-mysql/assets/43976208/c8835bf1-e951-41f4-85d9-eeb359820521)
+
 2. ダウンロードしたファイルを実行し、インストール  
 ※すべて「Next」でインストールしてOKです
 
 ## gitがインストールできたか確認
 1. Visual Studio Codeを開く
-2. 上の「terminal」→「New Terminal」を押し、Terminalを開く
+2. 上の「terminal」→「New Terminal」を押し、Terminalを開く  
+![vscode_terminal](https://github.com/aokimakoto0322/docker-mysql/assets/43976208/1c5a1ff1-e5e5-4be6-8daf-e5e1afec77a9)
 3. Terminalを開いたら、下記コマンドを入力  
 `git`
 4. 下記のように、グダグダ出てきたら成功  
@@ -80,6 +83,7 @@ concept guides. See 'git help <command>' or 'git help <concept>'
 to read about a specific subcommand or concept.
 See 'git help git' for an overview of the system.
 ```
+![terminal_git](https://github.com/aokimakoto0322/docker-mysql/assets/43976208/fa651299-2ed2-4bbe-956b-ec960f9296dd)
 
 # docker desktopのインストール
 ※基本はこのページをもとにインストールを進めて行きます  
@@ -92,3 +96,27 @@ https://docs.docker.com/desktop/install/windows-install/
 ※全部「OK」でインストールしてOKです
 
 3. ダウンロード完了したら、「Close and Restart」で再起動します
+
+4. 再起動後、`Docker Subscription Service Agreement`みたいな画面が出てくるので「Accept」を押す
+
+5. `Finish settings up Docker Desktop`の画面が出てくるので「Finish」で完了
+
+6. 完了後、Sign upの画面が出るが、`Continue without signing in`を押す  
+SignInすると、便利な機能みたいなのが使えるが、今回特に使わないのでよい
+
+7. `Tell us about the work you do`という画面からrole(職業)、`What will you use Docker for?`より目的を選択し「Continue」を押す  
+※今回は、mysqlのローカル環境構築なので、下記のように設定した。
+   - What’s your role?: Back-end developer
+   - What will you use Docker for? : Learning or teaching  
+
+8. 下記のような画面が出ればとりあえず成功  
+![docker](https://github.com/aokimakoto0322/docker-mysql/assets/43976208/83779629-68ee-4769-a84d-d2b2d1eca929)
+
+## dockerがインストールできたか確認  
+1. visual studio codeのターミナルから、下記コマンドを入力  
+`docker ps`
+
+2. 画像のように文字が出ればOK  
+![docker-ps](https://github.com/aokimakoto0322/docker-mysql/assets/43976208/3744fa2b-8133-4390-a6ca-e791a2f74313)
+
+# mysql環境構築
